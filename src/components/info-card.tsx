@@ -5,15 +5,23 @@ import {
   Typography,
   IconButton,
 } from "@material-tailwind/react";
+import { useTranslation } from "react-i18next";
 
 interface InfoCardProps {
   icon: React.ElementType;
-  title: string;
+  titleKey: string; // The key for the title translation
   date: string;
-  children: React.ReactNode;
+  descriptionKey: string; // The key for the description translation
 }
 
-export function InfoCard({ icon: Icon, title, date, children }: InfoCardProps) {
+export function InfoCard({
+  icon: Icon,
+  titleKey,
+  date,
+  descriptionKey,
+}: InfoCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <CardHeader
@@ -26,7 +34,7 @@ export function InfoCard({ icon: Icon, title, date, children }: InfoCardProps) {
             {date}
           </Typography>
           <Typography color="blue-gray" variant="h5" className="w-full">
-            {title}
+            {t(titleKey)} {/* Translated title */}
           </Typography>
         </div>
         <IconButton
@@ -38,7 +46,7 @@ export function InfoCard({ icon: Icon, title, date, children }: InfoCardProps) {
       </CardHeader>
       <CardBody className="grid justify-start !px-3.5 pt-2">
         <Typography className=" font-normal !text-gray-500">
-          {children}
+          {t(descriptionKey)} {/* Translated description */}
         </Typography>
       </CardBody>
     </Card>
