@@ -8,8 +8,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en-US",
-    supportedLngs: ["en-US", "es"],
+    fallbackLng: "en",
+    supportedLngs: ["en", "es"],
     load: "languageOnly", // Normalize to "en" or "es"
     debug: process.env.NODE_ENV === "development",
     backend: {
