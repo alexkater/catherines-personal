@@ -4,7 +4,7 @@ import "./globals.css";
 import { Roboto } from "next/font/google";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18n";
-import { Layout, FixedPlugin } from "@/components";
+import { Layout } from "@/components";
 
 const roboto = Roboto({
   subsets: ["latin"],

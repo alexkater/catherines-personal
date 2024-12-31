@@ -1,7 +1,8 @@
-import { Typography, Button } from "@material-tailwind/react";
+"use client";
+
+import { Typography } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
 
-const LINKS = ["nav_home", "nav_about_us", "nav_contact_us", "nav_services"];
 const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
