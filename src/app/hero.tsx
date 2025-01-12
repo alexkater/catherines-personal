@@ -8,7 +8,7 @@ function Hero() {
 
   return (
     <div className="relative w-full">
-      <div className="grid place-items-center min-h-[92vh] px-8">
+      <div className="grid place-items-center py-20 px-8">
         <div className="container mx-auto grid place-items-center h-max text-center">
           {/* Hero Title */}
           <Typography variant="h1" color="blue-gray">

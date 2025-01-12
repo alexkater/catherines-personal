@@ -13,9 +13,9 @@ export default function Portfolio() {
     <>
       <Navbar />
       <Hero />
+      <BookingSection />
       <InformationSection />
       <ContactSection />
-      <BookingSection />
       {/* <Testimonial /> */}
       <Footer />
     </>

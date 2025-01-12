@@ -7,7 +7,7 @@ const ContactSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="contact-us" className="bg-gray-100 py-12 px-8">
+    <section id="contact-us" className="bg-gray-100 py-20 px-8">
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Contact Information */}
         <div>

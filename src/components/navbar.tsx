@@ -48,10 +48,10 @@ export function Navbar() {
 
   const NAV_MENU = [
     { label: t("nav_home"), href: "#" },
+    { label: t("nav_booking"), href: "#booking" }, // Booking Section
     { label: t("nav_about_us"), href: "#about-us" },
     { label: t("nav_contact_us"), href: "#contact-us" },
     { label: t("nav_blog"), href: "https://catherine-nemologia.blogspot.com/" }, // Blog Section
-    { label: t("nav_booking"), href: "#booking" }, // Booking Section
   ];
 
   return (
