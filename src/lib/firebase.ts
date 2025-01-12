@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,8 +16,10 @@ const firebaseConfig = {
   measurementId: "G-GEMBK5BHRJ",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Initialize Firebase app (singleton)
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+// Initialize Analytics only on the client side
+const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
 
 export { app, analytics };
