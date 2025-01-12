@@ -28,7 +28,52 @@ export default function RootLayout({
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
           />
-          <title>Dr. Catherine González</title>
+          <title>
+            Dr. Catherine González - Specialist in General and Pulmonary
+            Medicine
+          </title>
+          <meta
+            name="description"
+            content="Dr. Catherine González offers general and online medical consultations with a focus on respiratory health. Book an appointment today for personalized, professional care."
+          />
+          <meta
+            name="keywords"
+            content="Catherine González, Pulmonary Medicine, General Medicine, Bogotá, Online Medical Consultations"
+          />
+          <meta name="author" content="Dr. Catherine González" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="robots" content="index, follow" />
+          <link rel="canonical" href="https://yourwebsite.com" />
+          <meta
+            property="og:title"
+            content="Dr. Catherine González - Specialist in General and Pulmonary Medicine"
+          />
+          <meta
+            property="og:description"
+            content="Dr. Catherine González offers general and online medical consultations with a focus on respiratory health. Book an appointment today for personalized, professional care."
+          />
+          <meta property="og:url" content="https://yourwebsite.com" />
+          <meta
+            property="og:image"
+            content="https://yourwebsite.com/og-image.jpg"
+          />
+          <meta property="og:type" content="website" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content="Dr. Catherine González - Specialist in General and Pulmonary Medicine"
+          />
+          <meta
+            name="twitter:description"
+            content="Dr. Catherine González offers general and online medical consultations with a focus on respiratory health. Book an appointment today for personalized, professional care."
+          />
+          <meta
+            name="twitter:image"
+            content="https://yourwebsite.com/twitter-image.jpg"
+          />
         </head>
         <body className={roboto.className}>
           <Layout>{children}</Layout>
