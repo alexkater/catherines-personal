@@ -3,7 +3,6 @@ import { Typography } from "@material-tailwind/react";
 import {
   AcademicCapIcon,
   BriefcaseIcon,
-  FireIcon,
 } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
 
@@ -107,6 +106,29 @@ export function InformationSection() {
               />
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Skills */}
+      <div className="mt-16 border-t border-gray-100 pt-12">
+        <Typography color="blue-gray" className="mb-2 text-3xl font-bold text-center">
+          {t("info_title_skills")}
+        </Typography>
+        <Typography variant="lead" className="!text-gray-500 text-center mb-8">
+          {t("info_description_skills")}
+        </Typography>
+        <div className="flex flex-wrap justify-center gap-4">
+          {[
+            { key: "skill_teamwork", icon: "fa-solid fa-people-group" },
+            { key: "skill_proactivity", icon: "fa-solid fa-bolt" },
+            { key: "skill_leadership", icon: "fa-solid fa-star" },
+            { key: "skill_research", icon: "fa-solid fa-magnifying-glass" },
+          ].map((s, i) => (
+            <div key={i} className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2">
+              <i className={`${s.icon} text-blue-600 text-sm`} />
+              <Typography className="text-blue-gray-700 font-medium text-sm">{t(s.key)}</Typography>
+            </div>
+          ))}
         </div>
       </div>
     </section>

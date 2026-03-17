@@ -1,110 +1,65 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
-import { Typography, Card, CardBody, Avatar } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
 
 export function Testimonial() {
   const { t } = useTranslation();
-  const [active, setActive] = React.useState(1);
 
-  // Translated testimonials data
   const testimonials = [
     {
-      id: 1,
+      feedback: t("testimonial_1_feedback"),
       name: t("testimonial_1_name"),
       title: t("testimonial_1_title"),
-      feedback: t("testimonial_1_feedback"),
-      avatar: "/images/testimonial1.jpg",
+      initials: "JD",
     },
     {
-      id: 2,
+      feedback: t("testimonial_2_feedback"),
       name: t("testimonial_2_name"),
       title: t("testimonial_2_title"),
-      feedback: t("testimonial_2_feedback"),
-      avatar: "/images/testimonial2.jpg",
+      initials: "JS",
     },
     {
-      id: 3,
+      feedback: t("testimonial_3_feedback"),
       name: t("testimonial_3_name"),
       title: t("testimonial_3_title"),
-      feedback: t("testimonial_3_feedback"),
-      avatar: "/images/testimonial3.jpg",
+      initials: "CM",
     },
   ];
 
-  const activeTestimonial = testimonials.find((t) => t.id === active);
-
   return (
-    <section className="py-12 px-8 lg:py-24">
-      <div className="container max-w-screen-lg mx-auto">
-        {/* Header Section */}
-        <div className="container mx-auto mb-20 text-center">
-          <Typography variant="h2" color="blue-gray" className="mb-4">
+    <section className="py-20 px-8 bg-white">
+      <div className="container mx-auto">
+        <div className="text-center mb-14">
+          <Typography variant="h2" color="blue-gray" className="mb-3 font-bold">
             {t("testimonial_title")}
           </Typography>
-          <Typography
-            variant="lead"
-            className="mx-auto w-full px-4 font-normal !text-gray-500 lg:w-8/12"
-          >
+          <Typography variant="lead" color="gray" className="max-w-2xl mx-auto">
             {t("testimonial_subtitle")}
           </Typography>
         </div>
 
-        {/* Testimonial Card */}
-        <Card color="transparent" shadow={false} className="py-8 lg:flex-row">
-          <CardBody className="w-full lg:gap-10 h-full lg:!flex justify-between">
-            {/* Testimonial Content */}
-            <div className="w-full mb-10 lg:mb-0">
-              <Typography
-                variant="h3"
-                color="blue-gray"
-                className="mb-4 font-bold lg:max-w-xs"
-              >
-                {activeTestimonial?.title}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((item, i) => (
+            <div key={i} className="bg-blue-50 rounded-xl p-6 shadow-sm flex flex-col gap-4">
+              <i className="fa-solid fa-quote-left text-blue-300 text-2xl" />
+              <Typography className="text-gray-600 text-sm leading-relaxed flex-1">
+                {item.feedback}
               </Typography>
-              <Typography className="mb-3 w-full lg:w-8/12 font-normal !text-gray-500">
-                {activeTestimonial?.feedback}
-              </Typography>
-              <Typography variant="h6" color="blue-gray" className="mb-0.5">
-                {activeTestimonial?.name}
-              </Typography>
-              <Typography
-                variant="small"
-                className="font-normal mb-5 !text-gray-500"
-              >
-                {activeTestimonial?.title}
-              </Typography>
-              <div className="flex items-center gap-4">
-                {testimonials.map((testimonial) => (
-                  <Avatar
-                    key={testimonial.id}
-                    variant="rounded"
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    size="sm"
-                    className={`cursor-pointer ${
-                      active === testimonial.id ? "opacity-100" : "opacity-50"
-                    }`}
-                    onClick={() => setActive(testimonial.id)}
-                  />
-                ))}
+              <div className="flex items-center gap-3 mt-2">
+                <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0">
+                  {item.initials}
+                </div>
+                <div>
+                  <Typography className="font-semibold text-blue-gray-800 text-sm">
+                    {item.name}
+                  </Typography>
+                  <Typography className="text-xs text-gray-500">{item.title}</Typography>
+                </div>
               </div>
             </div>
-
-            {/* Testimonial Image */}
-            <div className="h-[21rem] rounded-lg w-full sm:w-[18rem] shrink-0">
-              <Image
-                width={768}
-                height={768}
-                src={activeTestimonial?.avatar || ""}
-                alt={activeTestimonial?.name || "testimonial image"}
-                className="h-full rounded-lg w-full object-cover"
-              />
-            </div>
-          </CardBody>
-        </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

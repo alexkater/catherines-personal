@@ -1,71 +1,94 @@
 "use client";
 
-import { IconButton, Typography } from "@material-tailwind/react";
+import { IconButton, Typography, Button } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 function Hero() {
   const { t } = useTranslation();
 
+  const scrollToBooking = () => {
+    document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="relative w-full">
-      <div className="grid place-items-center py-20 px-8">
-        <div className="container mx-auto grid place-items-center h-max text-center">
-          {/* Hero Title */}
-          <Typography variant="h1" color="blue-gray">
-            {t("hero_title")}
-          </Typography>
+    <div className="relative w-full bg-white">
+      <div className="container mx-auto px-8 py-20">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
 
-          {/* Subheading */}
-          <Typography
-            variant="lead"
-            color="gray"
-            className="mt-4 mb-12 w-full md:max-w-full lg:max-w-4xl"
-          >
-            {t("hero_subheading")}
-          </Typography>
-
-          {/* Connect Section */}
-          <Typography className="mt-12 mb-4 text-blue-gray-900 font-medium uppercase">
-            {t("hero_connect")}
-          </Typography>
-
-          {/* Social Media Icons */}
-          <div className="gap-2 lg:flex">
-
-            <IconButton
-              variant="text"
+          {/* Text content */}
+          <div className="flex-1 text-center lg:text-left">
+            <Typography variant="h1" color="blue-gray" className="mb-4">
+              {t("hero_title")}
+            </Typography>
+            <Typography
+              variant="lead"
               color="gray"
-              placeholder=""
-              onClick={() =>
-                window.open(
-                  "https://www.linkedin.com/in/catherine-gonzalez-perez",
-                  "_blank"
-                )
-              }
+              className="mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              <i className="fa-brands fa-linkedin text-lg" />
-            </IconButton>
-            <IconButton
-              variant="text"
-              color="gray"
-              onClick={() => {
-                window.open(
-                  `mailto:catherine3070+staticweb@hotmail.com?subject=${encodeURIComponent(
-                    t("email_subject")
-                  )}&body=${encodeURIComponent(t("email_body"))}`
-                );
-              }}
+              {t("hero_subheading")}
+            </Typography>
+
+            <Button
+              size="lg"
+              color="blue"
+              className="mb-8"
+              onClick={scrollToBooking}
             >
-              <i className="fa-solid fa-envelope text-lg" />
-            </IconButton>
-            <IconButton
-              variant="text"
-              color="gray"
-              onClick={() => window.open("https://wa.me/573105967326", "_blank")}
-            >
-              <i className="fa-brands fa-whatsapp text-lg" />
-            </IconButton>
+              {t("hero_cta")}
+            </Button>
+
+            <Typography className="mb-3 text-blue-gray-900 font-medium uppercase text-sm">
+              {t("hero_connect")}
+            </Typography>
+
+            <div className="flex gap-2 justify-center lg:justify-start">
+              <IconButton
+                variant="text"
+                color="gray"
+                onClick={() =>
+                  window.open("https://www.linkedin.com/in/catherine-gonzalez-perez", "_blank")
+                }
+              >
+                <i className="fa-brands fa-linkedin text-lg" />
+              </IconButton>
+              <IconButton
+                variant="text"
+                color="gray"
+                onClick={() => {
+                  window.open(
+                    `mailto:catherine3070+staticweb@hotmail.com?subject=${encodeURIComponent(
+                      t("email_subject")
+                    )}&body=${encodeURIComponent(t("email_body"))}`
+                  );
+                }}
+              >
+                <i className="fa-solid fa-envelope text-lg" />
+              </IconButton>
+              <IconButton
+                variant="text"
+                color="gray"
+                onClick={() => window.open("https://wa.me/573105967326", "_blank")}
+              >
+                <i className="fa-brands fa-whatsapp text-lg" />
+              </IconButton>
+            </div>
           </div>
+
+          {/* Photo */}
+          <div className="flex-shrink-0">
+            <div className="w-56 h-56 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-blue-100 shadow-xl bg-blue-50 flex items-center justify-center">
+              <Image
+                src="/image/catherine.jpg"
+                alt={t("hero_photo_alt")}
+                width={288}
+                height={288}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

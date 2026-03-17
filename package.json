@@ -23,6 +23,12 @@
     "react-dom": "^18.2.42",
     "react-i18next": "^15.4.0"
   },
+  "overrides": {
+    "@material-tailwind/react": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "18.2.42",
