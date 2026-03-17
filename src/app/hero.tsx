@@ -31,6 +31,7 @@ function Hero() {
 
           {/* Social Media Icons */}
           <div className="gap-2 lg:flex">
+
             <IconButton
               variant="text"
               color="gray"
@@ -56,6 +57,13 @@ function Hero() {
               }}
             >
               <i className="fa-solid fa-envelope text-lg" />
+            </IconButton>
+            <IconButton
+              variant="text"
+              color="gray"
+              onClick={() => window.open("https://wa.me/573105967326", "_blank")}
+            >
+              <i className="fa-brands fa-whatsapp text-lg" />
             </IconButton>
           </div>
         </div>
