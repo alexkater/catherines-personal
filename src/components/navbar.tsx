@@ -10,6 +10,9 @@ import {
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid";
 import LanguageSwitcher from "./language-switcher";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "framer-motion";
+
+const MotionNavbar = motion(MTNavbar as any);
 
 function NavItem({
   href,
@@ -36,6 +39,7 @@ function NavItem({
 export function Navbar() {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
+  const shouldAnimate = useReducedMotion() === false;
 
   function handleOpen() {
     setOpen((cur) => !cur);
@@ -57,7 +61,10 @@ export function Navbar() {
   ];
 
   return (
-    <MTNavbar
+    <MotionNavbar
+      initial={{ opacity: 0, y: shouldAnimate ? -20 : 0 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       fullWidth
       blurred={false}
       shadow={false}
@@ -111,14 +118,13 @@ export function Navbar() {
                 {nav.label}
               </NavItem>
             ))}
-            {/* Language Switcher in Mobile Menu */}
             <li>
               <LanguageSwitcher />
             </li>
           </ul>
         </div>
       </Collapse>
-    </MTNavbar>
+    </MotionNavbar>
   );
 }
 
