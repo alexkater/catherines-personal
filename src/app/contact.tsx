@@ -70,6 +70,7 @@ const ContactSection = () => {
         <div className="w-full h-96">
           <iframe
             src="https://maps.google.com/maps?q=Centro+Comercial+Cerritos,+Pereira,+Risaralda,+Colombia&output=embed"
+            title="Ubicación en mapa"
             width="100%"
             height="100%"
             allowFullScreen
