@@ -85,6 +85,9 @@ function Hero() {
                 height={288}
                 className="w-full h-full object-cover"
                 priority
+                onLoad={() => {
+                  (window as Window & { __heroImageLoaded?: boolean }).__heroImageLoaded = true;
+                }}
               />
             </div>
           </div>
