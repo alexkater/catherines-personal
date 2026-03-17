@@ -88,6 +88,9 @@ function Hero() {
                 onLoad={() => {
                   (window as Window & { __heroImageLoaded?: boolean }).__heroImageLoaded = true;
                 }}
+                onError={() => {
+                  (window as Window & { __heroImageLoaded?: boolean }).__heroImageLoaded = true;
+                }}
               />
             </div>
           </div>
