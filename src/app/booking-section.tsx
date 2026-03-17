@@ -5,11 +5,13 @@ import { PopupModal } from "react-calendly";
 import { useTranslation } from "react-i18next";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "@/lib/firebase";
+import { motion, useReducedMotion } from "framer-motion";
 
 const BookingSection = () => {
   const [state, setState] = useState(false);
   const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
   const { t } = useTranslation();
+  const shouldAnimate = useReducedMotion() === false;
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -32,12 +34,18 @@ const BookingSection = () => {
   };
 
   return (
-    <section id="booking" className="py-20 bg-gray-100 px-8 text-center">
+    <motion.section
+      id="booking"
+      className="py-20 bg-gray-100 px-8 text-center"
+      initial={{ opacity: 0, y: shouldAnimate ? 30 : 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <h2 className="text-3xl font-bold mb-4">{t("book_appointment")}</h2>
       <p className="text-gray-600 mb-8">{t("schedule_consultation")}</p>
 
       <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto">
-        {/* Virtual Consultation - primary */}
         <div className="flex-1 bg-blue-600 text-white rounded-xl shadow-lg p-6 flex flex-col items-center">
           <i className="fa-solid fa-video text-3xl mb-3" />
           <h3 className="text-xl font-bold mb-2">{t("virtual_consultation")}</h3>
@@ -50,7 +58,6 @@ const BookingSection = () => {
           </button>
         </div>
 
-        {/* In-Person Consultation - secondary */}
         <div className="flex-1 bg-white border border-gray-200 rounded-xl shadow p-6 flex flex-col items-center">
           <i className="fa-solid fa-hospital text-3xl text-gray-500 mb-3" />
           <h3 className="text-xl font-bold text-gray-800 mb-2">{t("inperson_consultation")}</h3>
@@ -77,7 +84,7 @@ const BookingSection = () => {
           rootElement={rootElement}
         />
       )}
-    </section>
+    </motion.section>
   );
 };
 

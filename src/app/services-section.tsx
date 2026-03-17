@@ -2,6 +2,7 @@
 
 import { Typography } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "framer-motion";
 
 const SERVICES = [
   { icon: "fa-solid fa-lungs", titleKey: "service_asthma", descKey: "service_asthma_desc" },
@@ -16,9 +17,22 @@ const SERVICES = [
 
 export default function ServicesSection() {
   const { t } = useTranslation();
+  const shouldAnimate = useReducedMotion() === false;
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: shouldAnimate ? 20 : 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+  };
 
   return (
-    <section id="services" className="py-20 px-8 bg-blue-50">
+    <motion.section
+      id="services"
+      className="py-20 px-8 bg-blue-50"
+      initial={{ opacity: 0, y: shouldAnimate ? 30 : 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="container mx-auto">
         <div className="text-center mb-14">
           <Typography variant="h2" color="blue-gray" className="mb-3 font-bold">
@@ -29,10 +43,17 @@ export default function ServicesSection() {
           </Typography>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           {SERVICES.map((s, i) => (
-            <div
+            <motion.div
               key={i}
+              variants={cardVariants}
               className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition flex gap-4 items-start"
             >
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
@@ -46,10 +67,10 @@ export default function ServicesSection() {
                   {t(s.descKey)}
                 </Typography>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

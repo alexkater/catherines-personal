@@ -2,14 +2,22 @@
 
 import { Typography } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "framer-motion";
 
 const ContactSection = () => {
   const { t } = useTranslation();
+  const shouldAnimate = useReducedMotion() === false;
 
   return (
-    <section id="contact-us" className="bg-gray-100 py-20 px-8">
+    <motion.section
+      id="contact-us"
+      className="bg-gray-100 py-20 px-8"
+      initial={{ opacity: 0, y: shouldAnimate ? 30 : 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Contact Information */}
         <div>
           <Typography variant="h2" color="blue-gray" className="mb-4 font-bold">
             {t("contact_title")}
@@ -59,7 +67,6 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Map Integration */}
         <div className="w-full h-96">
           <iframe
             src="https://maps.google.com/maps?q=Centro+Comercial+Cerritos,+Pereira,+Risaralda,+Colombia&output=embed"
@@ -71,7 +78,7 @@ const ContactSection = () => {
           ></iframe>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

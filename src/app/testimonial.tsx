@@ -2,9 +2,11 @@
 
 import { Typography } from "@material-tailwind/react";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function Testimonial() {
   const { t } = useTranslation();
+  const shouldAnimate = useReducedMotion() === false;
 
   const testimonials = [
     {
@@ -27,8 +29,19 @@ export function Testimonial() {
     },
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: shouldAnimate ? 20 : 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+  };
+
   return (
-    <section className="py-20 px-8 bg-white">
+    <motion.section
+      className="py-20 px-8 bg-white"
+      initial={{ opacity: 0, y: shouldAnimate ? 30 : 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="container mx-auto">
         <div className="text-center mb-14">
           <Typography variant="h2" color="blue-gray" className="mb-3 font-bold">
@@ -39,9 +52,19 @@ export function Testimonial() {
           </Typography>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           {testimonials.map((item, i) => (
-            <div key={i} className="bg-blue-50 rounded-xl p-6 shadow-sm flex flex-col gap-4">
+            <motion.div
+              key={i}
+              variants={cardVariants}
+              className="bg-blue-50 rounded-xl p-6 shadow-sm flex flex-col gap-4"
+            >
               <i className="fa-solid fa-quote-left text-blue-300 text-2xl" />
               <Typography className="text-gray-600 text-sm leading-relaxed flex-1">
                 {item.feedback}
@@ -57,11 +80,11 @@ export function Testimonial() {
                   <Typography className="text-xs text-gray-500">{item.title}</Typography>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

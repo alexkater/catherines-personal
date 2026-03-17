@@ -5,6 +5,7 @@ import {
   BriefcaseIcon,
 } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
+import { motion, useReducedMotion } from "framer-motion";
 
 import InfoCard from "@/components/info-card";
 
@@ -76,9 +77,27 @@ const EXPERIENCE = [
 
 export function InformationSection() {
   const { t } = useTranslation();
+  const shouldAnimate = useReducedMotion() === false;
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: shouldAnimate ? 20 : 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+  };
+
+  const pillVariants = {
+    hidden: { opacity: 0, y: shouldAnimate ? 10 : 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
+  };
 
   return (
-    <section id="about-us" className="py-20 pb-28 px-8">
+    <motion.section
+      id="about-us"
+      className="py-20 pb-28 px-8"
+      initial={{ opacity: 0, y: shouldAnimate ? 30 : 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="grid xl:grid-cols-2 md:grid-cols-1 container gap-20 mx-auto items-start">
         {/* Education Section */}
         <div>
@@ -90,17 +109,24 @@ export function InformationSection() {
               {t("info_description_education")}
             </Typography>
           </div>
-          <div className="container mx-auto grid grid-cols-1 gap-16 gap-y-12">
+          <motion.div
+            className="container mx-auto grid grid-cols-1 gap-16 gap-y-12"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
             {EDUCATION.map((item, idx) => (
-              <InfoCard
-                key={idx}
-                icon={item.icon}
-                titleKey={item.titleKey}
-                date={item.date}
-                descriptionKey={item.descriptionKey}
-              />
+              <motion.div key={idx} variants={cardVariants}>
+                <InfoCard
+                  icon={item.icon}
+                  titleKey={item.titleKey}
+                  date={item.date}
+                  descriptionKey={item.descriptionKey}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Experience Section */}
@@ -113,17 +139,24 @@ export function InformationSection() {
               {t("info_description_experience")}
             </Typography>
           </div>
-          <div className="container mx-auto grid grid-cols-1 gap-16 gap-y-12">
+          <motion.div
+            className="container mx-auto grid grid-cols-1 gap-16 gap-y-12"
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+          >
             {EXPERIENCE.map((item, idx) => (
-              <InfoCard
-                key={idx}
-                icon={item.icon}
-                titleKey={item.titleKey}
-                date={item.date}
-                descriptionKey={item.descriptionKey}
-              />
+              <motion.div key={idx} variants={cardVariants}>
+                <InfoCard
+                  icon={item.icon}
+                  titleKey={item.titleKey}
+                  date={item.date}
+                  descriptionKey={item.descriptionKey}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -135,21 +168,31 @@ export function InformationSection() {
         <Typography variant="lead" className="!text-gray-500 text-center mb-8">
           {t("info_description_skills")}
         </Typography>
-        <div className="flex flex-wrap justify-center gap-4">
+        <motion.div
+          className="flex flex-wrap justify-center gap-4"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           {[
             { key: "skill_teamwork", icon: "fa-solid fa-people-group" },
             { key: "skill_proactivity", icon: "fa-solid fa-bolt" },
             { key: "skill_leadership", icon: "fa-solid fa-star" },
             { key: "skill_research", icon: "fa-solid fa-magnifying-glass" },
           ].map((s, i) => (
-            <div key={i} className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2">
+            <motion.div
+              key={i}
+              variants={pillVariants}
+              className="flex items-center gap-2 bg-blue-50 border border-blue-100 rounded-full px-5 py-2"
+            >
               <i className={`${s.icon} text-blue-600 text-sm`} />
               <Typography className="text-blue-gray-700 font-medium text-sm">{t(s.key)}</Typography>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
