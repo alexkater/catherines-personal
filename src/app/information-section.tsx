@@ -11,9 +11,15 @@ import InfoCard from "@/components/info-card";
 const EDUCATION = [
   {
     icon: AcademicCapIcon,
-    titleKey: "education_fea_pulmonary", // Translation key
-    date: "2018 - 2023",
-    descriptionKey: "education_fea_pulmonary_desc", // Translation key
+    titleKey: "education_bronchoscopy",
+    date: "2025",
+    descriptionKey: "education_bronchoscopy_desc",
+  },
+  {
+    icon: AcademicCapIcon,
+    titleKey: "education_epoc_master",
+    date: "2024",
+    descriptionKey: "education_epoc_master_desc",
   },
   {
     icon: AcademicCapIcon,
@@ -23,19 +29,31 @@ const EDUCATION = [
   },
   {
     icon: AcademicCapIcon,
-    titleKey: "education_doctor",
-    date: "2013",
-    descriptionKey: "education_doctor_desc",
-  },
-  {
-    icon: AcademicCapIcon,
     titleKey: "education_nimv_methodology",
     date: "2023",
     descriptionKey: "education_nimv_methodology_desc",
   },
+  {
+    icon: AcademicCapIcon,
+    titleKey: "education_fea_pulmonary",
+    date: "2018 - 2023",
+    descriptionKey: "education_fea_pulmonary_desc",
+  },
+  {
+    icon: AcademicCapIcon,
+    titleKey: "education_doctor",
+    date: "2013",
+    descriptionKey: "education_doctor_desc",
+  },
 ];
 
 const EXPERIENCE = [
+  {
+    icon: BriefcaseIcon,
+    titleKey: "experience_servisalud",
+    date: "Jun 2025 - Presente",
+    descriptionKey: "experience_servisalud_desc",
+  },
   {
     icon: BriefcaseIcon,
     titleKey: "experience_vithas",
@@ -45,7 +63,7 @@ const EXPERIENCE = [
   {
     icon: BriefcaseIcon,
     titleKey: "experience_jerez",
-    date: "2018 - 2023",
+    date: "May 2018 - Feb 2023",
     descriptionKey: "experience_jerez_desc",
   },
   {

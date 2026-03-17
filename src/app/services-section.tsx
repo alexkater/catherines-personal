@@ -10,6 +10,8 @@ const SERVICES = [
   { icon: "fa-solid fa-mask-face", titleKey: "service_vmni", descKey: "service_vmni_desc" },
   { icon: "fa-solid fa-x-ray", titleKey: "service_ild", descKey: "service_ild_desc" },
   { icon: "fa-solid fa-virus", titleKey: "service_pneumonia", descKey: "service_pneumonia_desc" },
+  { icon: "fa-solid fa-moon", titleKey: "service_sleep", descKey: "service_sleep_desc" },
+  { icon: "fa-solid fa-stethoscope", titleKey: "service_bronchoscopy", descKey: "service_bronchoscopy_desc" },
 ];
 
 export default function ServicesSection() {
